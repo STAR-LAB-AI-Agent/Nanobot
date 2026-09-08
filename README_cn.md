@@ -1,37 +1,72 @@
 ## 项目简介
-
 Nanobot 是一个可扩展的 AI 助手框架，支持多种聊天应用、模型提供商和工具集成。它提供了 WebUI、CLI 和 Python SDK 等多种使用方式.
 详细说明与使用方法请阅读 Nanobot 原文档：https://nanobot.wiki/cn/home/
-
 ## 快速开始
-
 ### 1. 安装
-
 # PYPI
+
 pip install nanobot-ai
-nanobot webui
 
 # 源码
+
 git clone https://github.com/HKUDS/nanobot.git
+
 cd nanobot
+
 pip install -e .
-nanobot webui
+
+
+# 完成Quickstart：安装后必须先执行初始化
+
+python -m nanobot onboard --wizard
+
+安装程序会打开向导。选择 Quick Start，然后按提示完成：
+
+1.选择拥有该凭据的 Provider 或 Endpoint。
+
+2.按提示填写 API Key 或 Base URL。
+
+3.填写同一个 Provider 能够运行的模型 ID。
+
+4.允许 Quick Start 启用本地 WebUI。
+
+5.设置 WebUI 密码，最后检查配置摘要。
 
 ### 2. 启动 WebUI
-
 最简单的方式是直接运行：
 
     nanobot webui
-
+    
 该命令会自动完成配置、启用本地 WebSocket 渠道、生成启动密钥、启动网关并打开浏览器。默认绑定 127.0.0.1，仅本机可访问。
 
 ### 3. 发送第一条消息
-
 打开 Settings → Models，配置 Provider、凭据和当前模型 Preset。
 新建 Topic 并发送 Hello!，先确认所选模型可以正常回复。
-准备处理项目时，先新建一个独立 Topic，再选择正确的工作区和访问模式。
-接下来只增加一项能力：可以是在 Settings → Channels 中添加聊天渠道，在 Settings 中配置网页、语音或图像 Provider，也可以在 Apps 中添加 App/MCP 集成。
-如果 WebUI 提示需要重启，先重启，再用最小请求测试刚添加的能力。
+
+### 如何在nanobot集成调用skill
+
+1. 初始化完成后生成默认目录如下：
+- Windows：`C:\Users\用户名\.nanobot\workspace`
+- Linux/macOS：`~/.nanobot/workspace`
+
+2. 把整个 skill 文件夹放入：
+  `~/.nanobot/workspace/skills/`
+
+其中标准的skill文件结构应为
+
+<skill‑name>/
+
+├── SKILL.md 
+
+├── scripts/
+
+│        └── main.py    
+
+├── requirements.txt  
+
+└── README.md             
+
+4. 重启 Nanobot，通过自然语言调用skill。
 
 ### WebUI 主要功能区域
 
